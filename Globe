@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive 3D Flight Globe</title>
+    
+    <!-- CSS Styling -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #globeViz {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* UI Overlay */
+        .ui-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 300px;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #444;
+            color: white;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            text-align: center;
+            color: #4db8ff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            background: #222;
+            border: 1px solid #555;
+            color: white;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #4db8ff;
+        }
+
+        /* Autocomplete Dropdown */
+        .suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: #333;
+            border: 1px solid #555;
+            border-top: none;
+            border-radius: 0 0 6px 6px;
+            max-height: 150px;
+            overflow-y: auto;
+            z-index: 20;
+            display: none;
+        }
+
+        .suggestions div {
+            padding: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            border-bottom: 1px solid #444;
+        }
+
+        .suggestions div:hover {
+            background: #4db8ff;
+            color: #000;
+        }
+
+        button#flyBtn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #0066cc, #00ccff);
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: transform 0.2s;
+        }
+
+        button#flyBtn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(0, 204, 255, 0.6);
+        }
+
+        button:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .status {
+            margin-top: 10px;
+            font-size: 12px;
+            text-align: center;
+            color: #888;
+            min-height: 15px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .ui-container {
+                top: auto;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+            }
+        }
+    </style>
+
+    <!-- Scripts -->
+    <!-- Three.js -->
+    <script src="https://unpkg.com/three"></script>
+    <!-- Globe.gl -->
+    <script src="https://unpkg.com/globe.gl"></script>
+    <!-- D3 for Geo math (interpolation) -->
+    <script src="https://unpkg.com/d3-geo"></script>
+</head>
+<body>
+
+    <!-- UI Container -->
+    <div class="ui-container">
+        <h2>Flight Planner</h2>
+        
+        <div class="input-group">
+            <label>Departure</label>
+            <input type="text" id="startInput" placeholder="Type city (e.g. New York)">
+            <div class="suggestions" id="startList"></div>
+        </div>
+
+        <div class="input-group">
+            <label>Destination</label>
+            <input type="text" id="endInput" placeholder="Type city (e.g. Tokyo)">
+            <div class="suggestions" id="endList"></div>
+        </div>
+
+        <button id="flyBtn">Take Off</button>
+        <div class="status" id="statusText">Select two cities</div>
+    </div>
+
+    <!-- 3D Globe Container -->
+    <div id="globeViz"></div>
+
+    <script>
+        // --- 1. CONFIGURATION & STATE ---
+        const ARC_REL_LEN = 0.4; // Relative length of arc pulse
+        const FLIGHT_TIME = 4000; // ms
+        const FLIGHT_ALTITUDE = 0.4; // Max altitude of the curve
+        
+        let citiesData = [];
+        let startCity = null;
+        let endCity = null;
+        let planeMesh = null;
+        let isFlying = false;
+        
+        // --- 2. INIT GLOBE ---
+        const globe = Globe()
+            .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
+            .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
+            .backgroundImageUrl('https://unpkg.com/three-globe/example/img/night-sky.png')
+            .atmosphereColor('#3a228a')
+            .atmosphereAltitude(0.25)
+            .enablePointerInteraction(true)
+            .pointColor(() => 'orange')
+            .pointAltitude(0)
+            .pointRadius(0.5)
+            .pointsMerge(true)
+            .arcColor(() => '#00ccff')
+            .arcDashLength(ARC_REL_LEN)
+            .arcDashGap(2)
+            .arcDashInitialGap(1)
+            .arcDashAnimateTime(FLIGHT_TIME)
+            .arcStroke(null)
+            .labelsData([])
+            .labelSize(1.5)
+            .labelDotRadius(0.5)
+            .labelColor(() => 'white')
+            (document.getElementById('globeViz'));
+
+        // Set initial camera distance
+        globe.controls().autoRotate = true;
+        globe.controls().autoRotateSpeed = 0.5;
+        globe.pointOfView({ altitude: 2.5 });
+
+        // Access Three.js Scene
+        const scene = globe.scene();
+
+        // --- 3. LOAD DATA ---
+        // Using a public dataset of populated places
+        fetch('https://raw.githubusercontent.com/vasturiano/globe.gl/master/example/datasets/ne_110m_populated_places_simple.geojson')
+            .then(res => res.json())
+            .then(data => {
+                // Flatten GeoJSON features to simple objects
+                citiesData = data.features.map(f => ({
+                    name: f.properties.NAME,
+                    country: f.properties.ADM0NAME,
+                    lat: f.properties.LATITUDE,
+                    lng: f.properties.LONGITUDE,
+                    pop: f.properties.POP_MAX
+                })).sort((a, b) => b.pop - a.pop); // Sort by population for better suggestions
+                
+                document.getElementById('statusText').innerText = "Ready to fly!";
+            });
+
+        // --- 4. BUILD THE AIRPLANE (Procedural Three.js Object) ---
+        function createPlane() {
+            const group = new THREE.Group();
+
+            // Body (Fuselage)
+            const bodyGeo = new THREE.ConeGeometry(0.1, 0.5, 8);
+            bodyGeo.rotateX(Math.PI / 2); // Point forward
+            const bodyMat = new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true });
+            const body = new THREE.Mesh(bodyGeo, bodyMat);
+            
+            // Wings
+            const wingGeo = new THREE.BoxGeometry(0.6, 0.02, 0.15);
+            const wingMat = new THREE.MeshPhongMaterial({ color: 0xcccccc });
+            const wings = new THREE.Mesh(wingGeo, wingMat);
+            wings.position.set(0, 0, 0);
+
+            // Tail
+            const tailGeo = new THREE.BoxGeometry(0.2, 0.02, 0.1);
+            const tail = new THREE.Mesh(tailGeo, wingMat);
+            tail.position.set(0, 0, -0.2);
+
+            // Vertical Stabilizer
+            const stabGeo = new THREE.BoxGeometry(0.02, 0.1, 0.1);
+            const stabilizer = new THREE.Mesh(stabGeo, wingMat);
+            stabilizer.position.set(0, 0.05, -0.2);
+
+            group.add(body);
+            group.add(wings);
+            group.add(tail);
+            group.add(stabilizer);
+
+            // Add a light to the plane
+            const light = new THREE.PointLight(0x00ccff, 1, 2);
+            light.position.set(0, 0.2, 0);
+            group.add(light);
+
+            return group;
+        }
+
+        planeMesh = createPlane();
+        planeMesh.scale.set(0, 0, 0); // Hide initially
+        scene.add(planeMesh);
+
+        // --- 5. UI LOGIC ---
+        const startInput = document.getElementById('startInput');
+        const endInput = document.getElementById('endInput');
+        const startList = document.getElementById('startList');
+        const endList = document.getElementById('endList');
+        const flyBtn = document.getElementById('flyBtn');
+
+        function setupAutocomplete(input, listElement, callback) {
+            input.addEventListener('input', () => {
+                const val = input.value.toLowerCase();
+                listElement.innerHTML = '';
+                if (val.length < 2) {
+                    listElement.style.display = 'none';
+                    return;
+                }
+                
+                // Filter cities
+                const matches = citiesData.filter(c => c.name.toLowerCase().includes(val)).slice(0, 5);
+                
+                if (matches.length > 0) {
+                    listElement.style.display = 'block';
+                    matches.forEach(city => {
+                        const div = document.createElement('div');
+                        div.innerText = `${city.name}, ${city.country}`;
+                        div.addEventListener('click', () => {
+                            input.value = city.name;
+                            listElement.style.display = 'none';
+                            callback(city);
+                        });
+                        listElement.appendChild(div);
+                    });
+                } else {
+                    listElement.style.display = 'none';
+                }
+            });
+
+            // Hide on blur
+            document.addEventListener('click', (e) => {
+                if (e.target !== input) listElement.style.display = 'none';
+            });
+        }
+
+        setupAutocomplete(startInput, startList, (city) => {
+            startCity = city;
+            updateMarkers();
+        });
+
+        setupAutocomplete(endInput, endList, (city) => {
+            endCity = city;
+            updateMarkers();
+        });
+
+        function updateMarkers() {
+            const markers = [];
+            const labels = [];
+            if (startCity) {
+                markers.push(startCity);
+                labels.push({ lat: startCity.lat, lng: startCity.lng, text: startCity.name });
+            }
+            if (endCity) {
+                markers.push(endCity);
+                labels.push({ lat: endCity.lat, lng: endCity.lng, text: endCity.name });
+            }
+            
+            globe.pointsData(markers);
+            globe.labelsData(labels);
+
+            // If one city is selected, rotate to it
+            if (markers.length === 1 && !isFlying) {
+                globe.pointOfView({ lat: markers[0].lat, lng: markers[0].lng, altitude: 2 }, 1000);
+            }
+        }
+
+        // --- 6. FLIGHT ANIMATION LOGIC ---
+        flyBtn.addEventListener('click', () => {
+            if (!startCity || !endCity) {
+                alert("Please select both a departure and destination city.");
+                return;
+            }
+            if (isFlying) return;
+
+            startFlight();
+        });
+
+        function startFlight() {
+            isFlying = true;
+            flyBtn.disabled = true;
+            flyBtn.innerText = "Flying...";
+            document.getElementById('statusText').innerText = `Flying from ${startCity.name} to ${endCity.name}`;
+
+            // 1. Stop Rotation
+            globe.controls().autoRotate = false;
+
+            // 2. Draw Arc
+            const flightArc = {
+                startLat: startCity.lat,
+                startLng: startCity.lng,
+                endLat: endCity.lat,
+                endLng: endCity.lng
+            };
+            globe.arcsData([flightArc]);
+
+            // 3. Setup Interpolator for flight path using d3-geo
+            const interpolator = d3.geoInterpolate(
+                [startCity.lng, startCity.lat],
+                [endCity.lng, endCity.lat]
+            );
+
+            // 4. Animate Plane
+            let startTime = Date.now();
+            planeMesh.scale.set(1, 1, 1); // Show plane
+
+            // Move camera to follow roughly
+            globe.pointOfView({ lat: startCity.lat, lng: startCity.lng, altitude: 2.5 }, 1000);
+
+            const animate = () => {
+                const now = Date.now();
+                let t = (now - startTime) / FLIGHT_TIME;
+
+                if (t > 1) {
+                    finishFlight();
+                    return;
+                }
+
+                // Calculate Position
+                const [lng, lat] = interpolator(t);
+                
+                // Calculate Altitude (Parabola: 4 * alt * x * (1-x))
+                const alt = 0.05 + (FLIGHT_ALTITUDE * 4 * t * (1 - t));
+
+                // Convert to Cartesian for Three.js
+                const pos = globe.getCoords(lat, lng, alt);
+                planeMesh.position.set(pos.x, pos.y, pos.z);
+
+                // Calculate Orientation
+                // Look at next tiny step to determine rotation
+                const nextT = t + 0.01;
+                if (nextT <= 1) {
+                    const [nLng, nLat] = interpolator(nextT);
+                    const nAlt = 0.05 + (FLIGHT_ALTITUDE * 4 * nextT * (1 - nextT));
+                    const nPos = globe.getCoords(nLat, nLng, nAlt);
+                    const target = new THREE.Vector3(nPos.x, nPos.y, nPos.z);
+                    planeMesh.lookAt(target);
+                }
+
+                requestAnimationFrame(animate);
+            };
+
+            animate();
+        }
+
+        function finishFlight() {
+            isFlying = false;
+            flyBtn.disabled = false;
+            flyBtn.innerText = "Take Off";
+            document.getElementById('statusText').innerText = "Arrived!";
+            
+            // Resume rotation after a delay
+            setTimeout(() => {
+                globe.controls().autoRotate = true;
+                // Optional: Clear arc and plane
+                // globe.arcsData([]); 
+                // planeMesh.scale.set(0,0,0);
+            }, 2000);
+        }
+
+        // Handle Window Resize
+        window.addEventListener('resize', () => {
+            globe.width(window.innerWidth).height(window.innerHeight);
+        });
+
+    </script>
+</body>
+</html>
