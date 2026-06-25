@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="google-adsense-account" content="ca-pub-7926060932884028">
   <!-- ══ SECURITY HEADERS ══ -->
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
@@ -1439,6 +1440,73 @@ img { -webkit-user-drag: none; user-drag: none; }
   .navbar-brand-text { font-size: 1.1rem; }
 }
 
+
+/* ── BACK TO TOP ── */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 24px;
+  z-index: 499;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--grad-sunset);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(255,122,0,.4);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .3s, transform .3s, box-shadow .2s;
+  pointer-events: none;
+}
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+.back-to-top:hover {
+  box-shadow: 0 10px 28px rgba(255,107,138,.5);
+  transform: translateY(-3px);
+}
+.back-to-top svg {
+  width: 22px; height: 22px;
+  stroke: white; fill: none; stroke-width: 2.5;
+}
+
+/* ── DRAWER LINKS ── */
+.drawer-link {
+  font-family: 'Barlow Condensed', sans-serif !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  letter-spacing: .1em !important;
+  text-transform: uppercase !important;
+  color: rgba(245,230,211,.75) !important;
+  text-decoration: none !important;
+  padding: 14px 18px !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  transition: background .2s, color .2s !important;
+}
+.drawer-link:hover {
+  background: rgba(255,122,0,.1) !important;
+  color: var(--white) !important;
+}
+
+/* ── NAV SPECIAL LINK ── */
+.nav-link-special {
+  color: var(--gold) !important;
+  background: rgba(212,168,83,.08) !important;
+  border: 1px solid rgba(212,168,83,.2) !important;
+}
+.nav-link-special:hover {
+  background: rgba(212,168,83,.15) !important;
+  color: var(--gold) !important;
+}
+
 </style>
 </head>
 <body>
@@ -1473,17 +1541,17 @@ img { -webkit-user-drag: none; user-drag: none; }
     <a href="#compare" class="nav-link">Compare</a>
     <a href="#training-plan" class="nav-link">Training</a>
     <a href="#testimonials" class="nav-link">Reviews</a>
-    <a href="#deal" class="nav-link">Deal</a>
+    <a href="#expedia-section" class="nav-link nav-link-special">✈ Travel</a>
   </nav>
 
 <!-- MOBILE NAV DRAWER -->
-<div id="nav-drawer" style="position:fixed;top:110px;left:0;right:0;background:rgba(11,11,11,.98);border-bottom:2px solid rgba(255,122,0,.2);z-index:299;padding:16px 6vw 20px;flex-direction:column;gap:4px;display:none;">
-  <a href="#review"        onclick="closeDrawer()" style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,230,211,.7);text-decoration:none;padding:13px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">📋 Review</a>
-  <a href="#specs"         onclick="closeDrawer()" style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,230,211,.7);text-decoration:none;padding:13px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">⚙️ Specs</a>
-  <a href="#compare"       onclick="closeDrawer()" style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,230,211,.7);text-decoration:none;padding:13px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">⚖️ Compare</a>
-  <a href="#training-plan" onclick="closeDrawer()" style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,230,211,.7);text-decoration:none;padding:13px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">🏃 Training Plan</a>
-  <a href="#testimonials"  onclick="closeDrawer()" style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,230,211,.7);text-decoration:none;padding:13px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">⭐ Reviews</a>
-  <a href="#deal"          onclick="closeDrawer()" style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,230,211,.7);text-decoration:none;padding:13px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">🛒 Get the Deal</a>
+<div id="nav-drawer" style="position:fixed;top:110px;left:0;right:0;background:rgba(8,6,3,.98);border-bottom:1px solid rgba(255,122,0,.2);z-index:299;padding:12px 5vw 16px;flex-direction:column;gap:2px;display:none;backdrop-filter:blur(20px);">
+  <a href="#review"        onclick="closeDrawer()" class="drawer-link">📋 &nbsp;Review</a>
+  <a href="#specs"         onclick="closeDrawer()" class="drawer-link">⚙️ &nbsp;Specs</a>
+  <a href="#compare"       onclick="closeDrawer()" class="drawer-link">⚖️ &nbsp;Sprint 7 vs Gym</a>
+  <a href="#training-plan" onclick="closeDrawer()" class="drawer-link">🏃 &nbsp;Training Plan</a>
+  <a href="#testimonials"  onclick="closeDrawer()" class="drawer-link">⭐ &nbsp;Customer Reviews</a>
+  <a href="#expedia-section" onclick="closeDrawer()" class="drawer-link" style="color:var(--gold) !important;">✈️ &nbsp;Plan Your Next Trip</a>
 </div>
   <!-- Mobile hamburger -->
   <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
@@ -2086,6 +2154,7 @@ img { -webkit-user-drag: none; user-drag: none; }
 </div>
 
 <!-- ══ EXPEDIA PARTNER BANNER ══ -->
+<div id="expedia-section"></div>
 <section class="expedia-section">
   <div class="expedia-section-label reveal">
     <div class="section-label" style="justify-content:center;color:var(--gold);">
@@ -2268,6 +2337,22 @@ console.log('%c⚠ RunSmarter Security', 'color:#FF7A00;font-size:20px;font-weig
   });
   updateAdmin();
 })();
+
+// ── BACK TO TOP ──
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('back-to-top');
+  if (btn) {
+    if (window.scrollY > 400) btn.classList.add('visible');
+    else btn.classList.remove('visible');
+  }
+});
+
 </script>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
 </body>
 </html>
