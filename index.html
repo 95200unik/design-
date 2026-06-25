@@ -1330,6 +1330,115 @@ img { -webkit-user-drag: none; user-drag: none; }
   .download-section { padding: 48px 5vw; }
 }
 
+
+/* ══════════════════════════════
+   NAVIGATION MENU
+══════════════════════════════ */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 32px;
+}
+
+.nav-link {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(245,230,211,.48);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 50px;
+  transition: color .2s, background .2s;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: var(--white);
+  background: rgba(255,122,0,.1);
+}
+
+/* Hamburger pour mobile */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+  margin-left: 16px;
+  background: none;
+  border: none;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(245,230,211,.7);
+  border-radius: 2px;
+  transition: all .3s;
+}
+
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* Mobile drawer */
+.nav-drawer {
+  position: fixed;
+  top: 110px; left: 0; right: 0;
+  background: rgba(11,11,11,.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 2px solid rgba(255,122,0,.2);
+  z-index: 299;
+  padding: 16px 6vw 20px;
+  flex-direction: column;
+  gap: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.nav-drawer.open {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+  display: flex;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.nav-drawer .nav-link {
+  font-size: .88rem;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: rgba(245,230,211,.65);
+}
+
+.nav-drawer .nav-link:hover {
+  color: var(--white);
+  background: rgba(255,122,0,.12);
+}
+
+@media (max-width: 900px) {
+  .nav-menu { display: none; }
+  .nav-hamburger { display: flex; }
+}
+
+@media (max-width: 480px) {
+  .navbar-tagline { display: none; }
+  .navbar-cta { font-size: .78rem; padding: 9px 14px; }
+  .navbar-logo-img { height: 36px; }
+  .navbar-brand-text { font-size: 1.1rem; }
+}
+
 </style>
 </head>
 <body>
@@ -1357,6 +1466,30 @@ img { -webkit-user-drag: none; user-drag: none; }
       <span class="navbar-tagline">Independent Review 2026</span>
     </div>
   </a>
+  <!-- Desktop nav links -->
+  <nav class="nav-menu">
+    <a href="#review" class="nav-link">Review</a>
+    <a href="#specs" class="nav-link">Specs</a>
+    <a href="#compare" class="nav-link">Compare</a>
+    <a href="#training-plan" class="nav-link">Training</a>
+    <a href="#testimonials" class="nav-link">Reviews</a>
+    <a href="#deal" class="nav-link">Deal</a>
+  </nav>
+
+<!-- MOBILE NAV DRAWER -->
+<div id="nav-drawer" style="position:fixed;top:110px;left:0;right:0;background:rgba(11,11,11,.98);border-bottom:2px solid rgba(255,122,0,.2);z-index:299;padding:16px 6vw 20px;flex-direction:column;gap:4px;display:none;">
+  <a href="#review"        onclick="closeDrawer()" style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,230,211,.7);text-decoration:none;padding:13px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">📋 Review</a>
+  <a href="#specs"         onclick="closeDrawer()" style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,230,211,.7);text-decoration:none;padding:13px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">⚙️ Specs</a>
+  <a href="#compare"       onclick="closeDrawer()" style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,230,211,.7);text-decoration:none;padding:13px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">⚖️ Compare</a>
+  <a href="#training-plan" onclick="closeDrawer()" style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,230,211,.7);text-decoration:none;padding:13px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">🏃 Training Plan</a>
+  <a href="#testimonials"  onclick="closeDrawer()" style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,230,211,.7);text-decoration:none;padding:13px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">⭐ Reviews</a>
+  <a href="#deal"          onclick="closeDrawer()" style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,230,211,.7);text-decoration:none;padding:13px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">🛒 Get the Deal</a>
+</div>
+  <!-- Mobile hamburger -->
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+
   <a href="https://tidd.ly/4us6Hgp" target="_blank" rel="nofollow sponsored" class="navbar-cta">
     SEE ON JTX. £1,149
   </a>
@@ -2013,158 +2146,128 @@ img { -webkit-user-drag: none; user-drag: none; }
 <div id="modal-contact" class="modal-overlay" onclick="closeModal(this)"><div class="modal-box" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeModal(document.getElementById('modal-contact'))">✕</button><h3>Contact Us</h3><div class="modal-content"><p>Have a question, a correction to suggest or a partnership enquiry? We are happy to hear from you.</p><div class="contact-block"><div class="contact-icon">✉</div><div><div class="contact-label">Email</div><a href="mailto:Runsmarterjtx@outlook.com" class="contact-email">Runsmarterjtx@outlook.com</a></div></div><div class="contact-note"><p>We aim to reply within 48 hours. For product support or warranty queries please contact JTX Fitness directly via their official website.</p></div><div class="contact-topics"><div class="contact-topic">📝 Editorial corrections</div><div class="contact-topic">🤝 Partnership enquiries</div><div class="contact-topic">❓ General questions</div><div class="contact-topic">🔒 Privacy &amp; data requests</div></div></div></div></div>
 
 <script>
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), 80); obs.unobserve(e.target); }
+// ── SCROLL REVEAL ──
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      setTimeout(function() { e.target.classList.add('visible'); }, 80);
+      obs.unobserve(e.target);
+    }
   });
 }, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
 
-/* ══════════════════════════════
-   SECURITY LAYER
-══════════════════════════════ */
-
-// 1. Disable right-click (deters casual copy-scraping)
-document.addEventListener('contextmenu', function(e) {
-  e.preventDefault();
-});
-
-// 2. Disable common dev shortcuts (F12, Ctrl+U, Ctrl+Shift+I, Ctrl+S)
-document.addEventListener('keydown', function(e) {
-  // F12
-  if (e.key === 'F12') { e.preventDefault(); return false; }
-  // Ctrl+U (view source)
-  if (e.ctrlKey && e.key === 'u') { e.preventDefault(); return false; }
-  // Ctrl+Shift+I (devtools)
-  if (e.ctrlKey && e.shiftKey && e.key === 'I') { e.preventDefault(); return false; }
-  // Ctrl+Shift+J (console)
-  if (e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); return false; }
-  // Ctrl+Shift+C (inspect element)
-  if (e.ctrlKey && e.shiftKey && e.key === 'C') { e.preventDefault(); return false; }
-  // Ctrl+S (save page)
-  if (e.ctrlKey && e.key === 's') { e.preventDefault(); return false; }
-});
-
-// 3. Disable text selection on key sections (prevents copy-paste scraping)
-document.querySelectorAll('.hero-content, .split-text, .testimonial-text, .deal-card-content').forEach(el => {
-  el.style.userSelect = 'none';
-  el.style.webkitUserSelect = 'none';
-});
-
-// 4. Detect devtools open (basic detection)
-(function() {
-  const threshold = 160;
-  const check = function() {
-    if (
-      window.outerWidth - window.innerWidth > threshold ||
-      window.outerHeight - window.innerHeight > threshold
-    ) {
-      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#141414;color:#FF3D00;font-family:sans-serif;font-size:1.2rem;text-align:center;padding:40px;">Access restricted.<br><br><a href="/" style="color:#FF3D00;">Return to RunSmarter</a></div>';
-    }
-  };
-  setInterval(check, 1000);
-})();
-
-// 5. Prevent iframe embedding (clickjacking protection)
-if (window.self !== window.top) {
-  window.top.location = window.self.location;
-}
-
-// 6. Sanitize any URL parameters to prevent XSS
-(function() {
-  const params = new URLSearchParams(window.location.search);
-  params.forEach((value) => {
-    if (/<[^>]*>/.test(value) || /javascript:/i.test(value)) {
-      window.location.replace(window.location.pathname);
-    }
-  });
-})();
-
-// 7. Affiliate link protection — add noopener noreferrer dynamically
-document.querySelectorAll('a[target="_blank"]').forEach(link => {
-  link.setAttribute('rel', 'noopener noreferrer nofollow sponsored');
-});
-
-// 8. Console warning
-console.log('%c⚠ RunSmarter Security', 'color:#FF3D00;font-size:20px;font-weight:bold;');
-console.log('%cThis site is monitored. Unauthorized access or scraping is prohibited.', 'color:#999;font-size:12px;');
-
+// ── MODALS ──
 function openModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow = 'hidden'; }
 function closeModal(el) { el.classList.remove('active'); document.body.style.overflow = ''; }
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.active').forEach(function(m) { closeModal(m); });
+});
+
+// ── COOKIE BANNER ──
 function closeCookie() {
   document.getElementById('cookie-banner').classList.remove('show');
   try { localStorage.setItem('cookieOk', '1'); } catch(e) {}
 }
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.active').forEach(m => closeModal(m));
-});
-window.addEventListener('DOMContentLoaded', () => {
-  try { if (!localStorage.getItem('cookieOk')) setTimeout(() => document.getElementById('cookie-banner').classList.add('show'), 1500); }
-  catch(e) { setTimeout(() => document.getElementById('cookie-banner').classList.add('show'), 1500); }
+window.addEventListener('load', function() {
+  try { if (!localStorage.getItem('cookieOk')) setTimeout(function() { document.getElementById('cookie-banner').classList.add('show'); }, 1500); }
+  catch(e) { setTimeout(function() { document.getElementById('cookie-banner').classList.add('show'); }, 1500); }
 });
 
-// ── STICKY BOTTOM BAR ──
-(function() {
-  const bar = document.getElementById('sticky-bar');
+// ── STICKY BAR ──
+var stickyShown = false;
+window.addEventListener('scroll', function() {
+  var bar = document.getElementById('sticky-bar');
   if (!bar) return;
-  let shown = false;
+  var scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  if (scrolled > 0.25 && !stickyShown) { bar.classList.add('visible'); stickyShown = true; }
+});
+
+// ── HAMBURGER MENU ──
+function closeDrawer() {
+  var d = document.getElementById('nav-drawer');
+  var b = document.getElementById('nav-hamburger');
+  if (d) d.style.display = 'none';
+  if (b) b.classList.remove('open');
+}
+
+window.addEventListener('load', function() {
+  var burger = document.getElementById('nav-hamburger');
+  var drawer = document.getElementById('nav-drawer');
+  if (burger && drawer) {
+    burger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (drawer.style.display === 'flex') {
+        drawer.style.display = 'none';
+        burger.classList.remove('open');
+      } else {
+        drawer.style.display = 'flex';
+        burger.classList.add('open');
+      }
+    });
+    document.addEventListener('click', function(e) {
+      if (drawer.style.display === 'flex' && !drawer.contains(e.target) && !burger.contains(e.target)) {
+        closeDrawer();
+      }
+    });
+  }
+  // Active nav highlight
   window.addEventListener('scroll', function() {
-    const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-    if (scrolled > 0.25 && !shown) {
-      bar.classList.add('visible');
-      shown = true;
-    }
+    var ids = ['review','specs','compare','training-plan','testimonials','deal'];
+    var cur = '';
+    ids.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 120) cur = id;
+    });
+    document.querySelectorAll('.nav-link').forEach(function(lnk) {
+      lnk.style.color = (cur && lnk.getAttribute('href') === '#' + cur) ? 'var(--fire)' : '';
+    });
+  });
+});
+
+// ── SECURITY ──
+document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'F12') { e.preventDefault(); return false; }
+  if (e.ctrlKey && e.key === 'u') { e.preventDefault(); return false; }
+  if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) { e.preventDefault(); return false; }
+  if (e.ctrlKey && e.key === 's') { e.preventDefault(); return false; }
+});
+document.querySelectorAll('.hero-content, .split-text, .testimonial-text, .deal-card-content').forEach(function(el) {
+  el.style.userSelect = 'none';
+  el.style.webkitUserSelect = 'none';
+});
+try { if (window.self !== window.top) { window.top.location.href = window.self.location.href; } } catch(e) {}
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  params.forEach(function(value) {
+    if (/<[^>]*>/.test(value) || /javascript:/i.test(value)) { window.location.replace(window.location.pathname); }
   });
 })();
-
+document.querySelectorAll('a[target="_blank"]').forEach(function(link) {
+  link.setAttribute('rel', 'noopener noreferrer nofollow sponsored');
+});
+console.log('%c⚠ RunSmarter Security', 'color:#FF7A00;font-size:20px;font-weight:bold;');
 
 // ── PDF DOWNLOAD COUNTER ──
 (function() {
-  const PDF_KEY = 'rs_pdf_downloads';
-  const ADMIN_KEY = 'rs_admin_view';
-
-  // Get current count from localStorage
-  function getCount() {
-    try { return parseInt(localStorage.getItem(PDF_KEY) || '0'); }
-    catch(e) { return 0; }
-  }
-
-  function setCount(n) {
-    try { localStorage.setItem(PDF_KEY, n); } catch(e) {}
-  }
-
-  function updateAdminDisplay() {
-    const el = document.getElementById('admin-dl-count');
-    if (el) el.textContent = getCount();
-  }
-
-  // Track download click
-  const dlBtn = document.getElementById('pdf-download-btn');
-  if (dlBtn) {
-    dlBtn.addEventListener('click', function() {
-      setCount(getCount() + 1);
-      updateAdminDisplay();
-    });
-  }
-
-  // Admin mode: type "admin" anywhere to reveal counter
-  let typed = '';
+  var PDF_KEY = 'rs_pdf_downloads';
+  function getCount() { try { return parseInt(localStorage.getItem(PDF_KEY) || '0'); } catch(e) { return 0; } }
+  function setCount(n) { try { localStorage.setItem(PDF_KEY, n); } catch(e) {} }
+  function updateAdmin() { var el = document.getElementById('admin-dl-count'); if (el) el.textContent = getCount(); }
+  var dlBtn = document.getElementById('pdf-download-btn');
+  if (dlBtn) { dlBtn.addEventListener('click', function() { setCount(getCount() + 1); updateAdmin(); }); }
+  var typed = '';
   document.addEventListener('keypress', function(e) {
     typed += e.key.toLowerCase();
     if (typed.length > 5) typed = typed.slice(-5);
     if (typed === 'admin') {
-      const counter = document.getElementById('admin-counter');
-      if (counter) {
-        counter.classList.toggle('visible');
-        updateAdminDisplay();
-      }
+      var counter = document.getElementById('admin-counter');
+      if (counter) { counter.classList.toggle('visible'); updateAdmin(); }
     }
   });
-
-  // Init display
-  updateAdminDisplay();
+  updateAdmin();
 })();
-
 </script>
 </body>
 </html>
