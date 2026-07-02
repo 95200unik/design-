@@ -1948,6 +1948,59 @@ img { -webkit-user-drag: none; user-drag: none; }
   .ww-section { padding: 28px 5vw; }
 }
 
+
+/* ── FAQ SECTION ── */
+.faq-section {
+  background: linear-gradient(180deg, #0f0d0a, #111008);
+  padding: 60px 6vw;
+}
+.faq-header { text-align: center; margin-bottom: 40px; }
+.faq-header p { color: rgba(245,230,211,.6); margin: 12px auto 0; max-width: 52ch; line-height: 1.78; }
+.faq-list { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.faq-item {
+  background: linear-gradient(135deg, #141008, #111208);
+  border: 1px solid rgba(255,122,0,.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: .04em;
+  text-align: left;
+  gap: 16px;
+}
+.faq-q:hover { color: var(--fire); }
+.faq-icon {
+  font-size: 1.4rem;
+  color: var(--fire);
+  flex-shrink: 0;
+  transition: transform .3s;
+  line-height: 1;
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-a {
+  display: none;
+  padding: 0 24px 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: .95rem;
+  color: rgba(245,230,211,.65);
+  line-height: 1.82;
+  border-top: 1px solid rgba(255,122,0,.06);
+}
+.faq-item.open .faq-a { display: block; }
+@media (max-width: 768px) { .faq-section { padding: 48px 5vw; } .faq-q { font-size: .95rem; padding: 16px 18px; } .faq-a { padding: 0 18px 16px; } }
+
 </style>
 
 <script>
@@ -2018,7 +2071,7 @@ document.addEventListener('click', function(e) {
 <div class="promo-banner">
   <p>
     <span class="chip">🔥 SPRING SALE</span>
-    &nbsp;JTX Sprint 7 — <strong style="color:#fff;">NOW £999</strong> &nbsp;·&nbsp; Save £150 — Limited Time
+    &nbsp;JTX Sprint 7 — <strong style="color:#fff;">NOW £999</strong> &nbsp;·&nbsp; Save £150 · Free UK Delivery · While Stocks Last
     &nbsp;<span class="chip" style="background:transparent;border:1.5px solid rgba(255,255,255,.6);">NO CODE NEEDED</span>
   </p>
 </div>
@@ -2033,11 +2086,11 @@ document.addEventListener('click', function(e) {
     <div class="hero-deal">
       <div class="dt">
         <div class="dt-title">🔥 £150 Off — No Code Needed</div>
-        <div class="dt-sub">Sale price applied automatically at checkout. Limited time offer.</div>
+        <div class="dt-sub">Sale price applied at checkout. Stock limited — order today for free UK delivery.</div>
       </div>
       <div class="dp"><div class="dp-old">£1,149</div><div class="dp-new">£999</div></div>
     </div>
-    <p class="hero-sub">The JTX Sprint 7. Built for every run. 3HP motor, 20 km/h, Zwift-compatible and designed to fold away in seconds. The UK's most trusted home treadmill, trusted by over 6,600 buyers across the UK.</p>
+    <p class="hero-sub">The JTX Sprint 7. Built for every run. 2.5 CHP motor, 20 km/h, Zwift-compatible and designed to fold away in seconds. The UK's most trusted home treadmill, trusted by over 6,600 buyers across the UK.</p>
     <a href="#review" class="btn-cta">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Start Your Journey
     </a>
@@ -2069,8 +2122,8 @@ document.addEventListener('click', function(e) {
 </div>
 
 <div class="marquee-track"><div class="marquee-inner">
-  <span>3HP Motor</span><span>20 km/h Top Speed</span><span>12% Motorised Incline</span><span>Zwift &amp; Kinomap</span><span>43 Programmes</span><span>3-Year Warranty</span><span>CushionStep Deck</span><span>Hydraulic Fold</span><span>4.8★ Trustpilot</span><span>FREE Delivery</span><span>28-Day Returns</span><span>FIFA World Cup 2026</span>
-  <span>3HP Motor</span><span>20 km/h Top Speed</span><span>12% Motorised Incline</span><span>Zwift &amp; Kinomap</span><span>43 Programmes</span><span>3-Year Warranty</span><span>CushionStep Deck</span><span>Hydraulic Fold</span><span>4.8★ Trustpilot</span><span>FREE Delivery</span><span>28-Day Returns</span><span>FIFA World Cup 2026</span>
+  <span>2.5 CHP Motor</span><span>20 km/h Top Speed</span><span>12% Motorised Incline</span><span>Zwift &amp; Kinomap</span><span>43 Programmes</span><span>3-Year Warranty</span><span>CushionStep Deck</span><span>Hydraulic Fold</span><span>4.8★ Trustpilot</span><span>FREE Delivery</span><span>28-Day Returns</span><span>FIFA World Cup 2026</span>
+  <span>2.5 CHP Motor</span><span>20 km/h Top Speed</span><span>12% Motorised Incline</span><span>Zwift &amp; Kinomap</span><span>43 Programmes</span><span>3-Year Warranty</span><span>CushionStep Deck</span><span>Hydraulic Fold</span><span>4.8★ Trustpilot</span><span>FREE Delivery</span><span>28-Day Returns</span><span>FIFA World Cup 2026</span>
 </div></div>
 
 
@@ -2166,7 +2219,7 @@ document.addEventListener('click', function(e) {
   <div class="console-text reveal">
     <div class="section-label">The Dashboard</div>
     <h2>Everything<br>in View,<br>Nothing to Hunt For</h2>
-    <p>Heart rate, speed, distance, time and incline. All visible on the 7-inch LCD at a glance. The quick-access buttons sit exactly where your hands land naturally during a run.</p>
+    <p>Heart rate, speed, distance, time and incline. All visible on the 13-inch LCD at a glance. The quick-access buttons sit exactly where your hands land naturally during a run.</p>
     <p>Bluetooth built in, speakers included and a USB port to charge your phone while you train. These are the small details that make you actually enjoy using your machine, session after session.</p>
     <div class="console-stats">
       <div class="c-stat"><div class="cn">43<span>+</span></div><div class="cl">Programmes</div></div>
@@ -2197,16 +2250,16 @@ document.addEventListener('click', function(e) {
       <div class="section-label">Technical Specs</div>
       <h2>The Raw<br>Numbers</h2><br>
       <table class="specs-table">
-        <tr><td>Motor</td><td>3HP continuous / 6HP peak</td></tr>
+        <tr><td>Motor</td><td>2.5 CHP continuous</td></tr>
         <tr><td>Top speed</td><td>20 km/h (12.4 mph)</td></tr>
         <tr><td>Incline</td><td>0–12% motorised</td></tr>
         <tr><td>Incline levels</td><td>15 levels</td></tr>
         <tr><td>Running surface</td><td>145 × 51 cm</td></tr>
-        <tr><td>Programmes</td><td>43 trainer programmes</td></tr>
-        <tr><td>Display</td><td>7-inch LCD</td></tr>
-        <tr><td>Max user weight</td><td>160 kg / 352 lbs</td></tr>
+        <tr><td>Programmes</td><td>36 pre-set workout programmes</td></tr>
+        <tr><td>Display</td><td>13-inch LCD</td></tr>
+        <tr><td>Max user weight</td><td>130 kg / 286 lbs</td></tr>
         <tr><td>Machine weight</td><td>85 kg</td></tr>
-        <tr><td>Dimensions unfolded</td><td>179 × 88 × 159 cm</td></tr>
+        <tr><td>Dimensions unfolded</td><td>180 × 84 × 159 cm</td></tr>
         <tr><td>Connectivity</td><td>Bluetooth, Zwift, Kinomap</td></tr>
         <tr><td>Current price</td><td style="color:#22C55E;font-weight:900;">£1,149 <span style="color:rgba(235,235,235,.35);font-size:.85rem;">· Free delivery</span></td></tr>
         <tr><td>Warranty</td><td>3 years in-home</td></tr>
@@ -2236,7 +2289,7 @@ document.addEventListener('click', function(e) {
     <div class="review-col pro reveal">
       <h3>✓ &nbsp;What impresses</h3>
       <ul>
-        <li>The 3HP motor doesn't flinch during long, intense sprints. Smooth and consistent throughout.</li>
+        <li>The 2.5 CHP motor doesn't flinch during long, intense sprints. Smooth and consistent throughout.</li>
         <li>20 km/h top speed means very few runners will ever hit the ceiling</li>
         <li>CushionStep makes a real difference on long sessions. Legs recover noticeably faster.</li>
         <li>Zwift compatibility works without a forced subscription. You own the experience. You do not rent it.</li>
@@ -2564,7 +2617,7 @@ document.addEventListener('click', function(e) {
   <div class="deal-intro reveal">
     <div class="section-label" style="justify-content:center;">Spring Bank Holiday Sale</div>
     <h2>£150 Off —<br>Right Now.</h2>
-    <p>This is the best price the Sprint 7 has been in months. No code needed. The saving is applied automatically when you click through to JTX.</p>
+    <p>This is the best price the Sprint 7 has been in months. Over 6,600 UK buyers have already made the switch from the gym. No code needed — the saving is applied automatically when you click through to JTX.</p>
   </div>
   <div class="deal-card reveal">
     <div class="deal-price-panel">
@@ -2594,11 +2647,89 @@ document.addEventListener('click', function(e) {
   </div>
 </div>
 
+
+<!-- ══ FAQ SECTION ══ -->
+<section class="faq-section" id="faq">
+  <div class="faq-header reveal">
+    <div class="section-label" style="justify-content:center;">Got Questions?</div>
+    <h2>Common Questions<br>Answered</h2>
+    <p>Everything you need to know before buying the JTX Sprint 7.</p>
+  </div>
+
+  <div class="faq-list reveal">
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Is the JTX Sprint 7 suitable for beginners?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">Absolutely. The Sprint 7 starts at just 1 km/h and goes up to 20 km/h, so it suits complete beginners through to experienced runners. The 36 built-in programmes include beginner-friendly workouts designed to ease you in gradually.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        How much floor space does it need?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">The running surface is 145 × 51 cm. When folded, it takes up significantly less space — ideal for flats and smaller UK homes. Most users store it upright against a wall when not in use.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        What does the 3-year warranty cover?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">The in-home warranty covers parts and labour for 3 years. JTX sends an engineer to your home — you do not need to arrange return delivery. This is a significant advantage over most brands that require you to ship the machine back.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Does it work with Zwift or other apps?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">Yes. The Sprint 7 connects via Bluetooth to Zwift, Kinomap and other fitness apps. No additional subscription is required to use the Bluetooth connectivity — you only pay for the apps you choose to use.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Is delivery free and how long does it take?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">Free delivery is included across mainland UK. JTX typically delivers within 3–7 working days. You can also choose a room-of-choice delivery option at checkout for added convenience.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Can I return it if I change my mind?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">Yes. JTX offer a 28-day returns policy. If the treadmill is not right for you within 28 days of delivery, you can arrange a return. Terms apply — full details are available on the JTX website at checkout.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Is £999 the best price available?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">Yes — at the time of writing, £999 is the current sale price, down from the standard £1,149. This saving is applied automatically at checkout via our affiliate link. We monitor pricing regularly and will update this page if anything changes.</div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;margin-top:40px;" class="reveal">
+    <a href="https://tidd.ly/4us6Hgp" target="_blank" rel="nofollow sponsored" class="btn-cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Order the JTX Sprint 7 — £999
+    </a>
+    <p style="font-size:.8rem;color:rgba(245,230,211,.3);margin-top:12px;">Free UK delivery · 3-year in-home warranty · 28-day returns</p>
+  </div>
+</section>
+
 <section class="cta-section" id="order">
   <div class="reveal">
     <div class="section-label" style="justify-content:center;">⚽ World Cup 2026 · Limited Offer</div>
     <h2>Your Run<br>Starts Here.</h2>
-    <p class="cta-desc">The Sprint 7 is built for people who are serious about training at home. Men and women who want professional-grade performance without leaving the house. Powerful motor, smart connectivity, foldable design and a 3-year in-home warranty that shows JTX stands behind every machine they sell.</p>
+    <p class="cta-desc">The Sprint 7 is built for people who are serious about training at home. Professional-grade performance, smart connectivity, foldable design and a 3-year in-home warranty. Currently £150 off — but this price will not last. Over 6,600 UK buyers have already made the investment.</p>
     <div class="trust-row">
       <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>Free 2-person delivery</div>
       <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>28-day returns</div>
@@ -2894,6 +3025,18 @@ console.log('%c⚠ RunSmarter Security', 'color:#FF7A00;font-size:20px;font-weig
       <div style="font-size:.75rem;color:#9CA3AF;">Maximize burn. Live active.</div>
     </div>
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF4444" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+  </a>
+
+  <!-- FAQ -->
+  <a href="#faq" onclick="closeDrawer()" style="display:flex;align-items:center;gap:14px;padding:16px;background:#1A1A1A;border-radius:16px;text-decoration:none;margin-bottom:10px;border:1px solid rgba(255,107,53,.15);box-sizing:border-box;">
+    <div style="width:52px;height:52px;border-radius:50%;background:radial-gradient(circle,rgba(244,81,30,.3),#111);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 14px rgba(255,107,53,.5),0 0 0 2px rgba(255,107,53,.3);">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF9A3C" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+    </div>
+    <div style="flex:1;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;color:#fff;letter-spacing:.06em;margin-bottom:3px;">FAQ</div>
+      <div style="font-size:.75rem;color:#9CA3AF;">Common questions answered</div>
+    </div>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F4511E" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
   </a>
 
   <!-- WEIGHTWORLD -->
