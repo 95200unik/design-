@@ -996,11 +996,11 @@ blockquote {
 .btn-cta.sticky-cta:hover { box-shadow: 0 8px 28px rgba(255,107,138,.6) !important; transform: translateY(-2px) scale(1.04); }
 
 /* ── EXPEDIA ── */
-.expedia-section { background: linear-gradient(180deg, #111008, #0d0b08); padding: 40px 6vw 0; }
+.expedia-section { background: linear-gradient(180deg, #111008, #0d0b08); padding: 26px 6vw 0; }
 .expedia-section-label { text-align: center; margin-bottom: 18px; }
 .expedia-section-label p { font-size: .88rem; color: rgba(245,230,211,.4); margin-top: 6px; }
 .expedia-banner-wrap {
-  position: relative; max-width: 1100px; margin: 0 auto;
+  position: relative; max-width: 620px; margin: 0 auto;
   border-radius: 8px; overflow: hidden;
   box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(255,122,0,.1);
 }
@@ -1544,7 +1544,7 @@ img { -webkit-user-drag: none; user-drag: none; }
 ══════════════════════════════ */
 .fatburn-section {
   background: linear-gradient(135deg, #0f0d0a 0%, #1a0808 50%, #0f0d0a 100%);
-  padding: 44px 6vw;
+  padding: 30px 6vw;
   border-top: 1px solid rgba(220,30,30,.15);
   border-bottom: 1px solid rgba(220,30,30,.15);
   position: relative;
@@ -1581,7 +1581,7 @@ img { -webkit-user-drag: none; user-drag: none; }
 
 .fatburn-banner-wrap {
   width: 100%;
-  max-width: 750px;
+  max-width: 460px;
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(220,30,30,.2), 0 0 0 1px rgba(220,30,30,.15);
@@ -1904,7 +1904,7 @@ img { -webkit-user-drag: none; user-drag: none; }
 /* ── WEIGHTWORLD BANNER ── */
 .ww-section {
   background: linear-gradient(135deg, #0f0d0a, #111008);
-  padding: 36px 6vw;
+  padding: 26px 6vw;
   border-top: 1px solid rgba(255,255,255,.05);
   border-bottom: 1px solid rgba(255,255,255,.05);
 }
@@ -1919,7 +1919,7 @@ img { -webkit-user-drag: none; user-drag: none; }
   margin-bottom: 14px;
 }
 .ww-banner-wrap {
-  max-width: 728px;
+  max-width: 460px;
   margin: 0 auto;
   border-radius: 8px;
   overflow: hidden;
@@ -1980,6 +1980,24 @@ img { -webkit-user-drag: none; user-drag: none; }
   background: linear-gradient(180deg, #0f0d0a, #111008);
   padding: 60px 6vw;
 }
+
+/* ── LEGAL / PRIVACY / CONTACT (real crawlable content) ── */
+.legal-section {
+  background: linear-gradient(180deg, #0d0b08, #0B0B0B);
+  padding: 60px 6vw;
+}
+.legal-header { text-align: center; margin-bottom: 40px; }
+.legal-header p { color: rgba(245,230,211,.6); margin: 12px auto 0; max-width: 60ch; line-height: 1.78; }
+.legal-grid { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 768px) { .legal-grid { grid-template-columns: 1fr; } }
+.legal-block {
+  background: linear-gradient(135deg, #141008, #111208);
+  border: 1px solid rgba(255,122,0,.1);
+  border-radius: 4px;
+  padding: 28px 26px;
+  scroll-margin-top: 90px;
+}
+.legal-block h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; text-transform: uppercase; letter-spacing: .04em; color: var(--white); margin-bottom: 10px; }
 .faq-header { text-align: center; margin-bottom: 40px; }
 .faq-header p { color: rgba(245,230,211,.6); margin: 12px auto 0; max-width: 52ch; line-height: 1.78; }
 .faq-list { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
@@ -3114,7 +3132,101 @@ document.addEventListener('click', function(e) {
 </section>
 
 
-<!-- TRAIN · EXPLORE · LIVE — Video (between comparison and testimonials) -->
+<section class="comparison-section" id="jtx-guide">
+  <div class="comparison-header reveal">
+    <div class="section-label" style="justify-content:center;">Buying Guide</div>
+    <h2>Sprint 7 vs Other JTX Treadmills</h2>
+    <p>JTX's home treadmill range spans three models. Here's how the Sprint 7 compares to the Sprint-8 Pro and the fixed-frame Sprint-9 Pro, using the official specifications from JTX Fitness, so you can see exactly where it sits in the range.</p>
+  </div>
+
+  <div class="reveal" style="overflow-x:auto;">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="col-sprint">JTX Sprint-7</th>
+          <th class="col-gym">JTX Sprint-8 Pro</th>
+          <th class="col-gym">JTX Sprint-9 Pro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Typical price</td>
+          <td class="col-sprint highlight-green">£999</td>
+          <td class="col-gym">£1,299</td>
+          <td class="col-gym">£1,499</td>
+        </tr>
+        <tr>
+          <td>Top speed</td>
+          <td class="col-sprint">20 km/h</td>
+          <td class="col-gym">20 km/h</td>
+          <td class="col-gym highlight-green">22 km/h</td>
+        </tr>
+        <tr>
+          <td>Motorised incline</td>
+          <td class="col-sprint">Up to 12%</td>
+          <td class="col-gym">Up to 12%</td>
+          <td class="col-gym">Up to 11%</td>
+        </tr>
+        <tr>
+          <td>Motor power</td>
+          <td class="col-sprint">2.5HP</td>
+          <td class="col-gym">3HP</td>
+          <td class="col-gym highlight-green">4HP brushless</td>
+        </tr>
+        <tr>
+          <td>Running surface</td>
+          <td class="col-sprint">145 x 51cm</td>
+          <td class="col-gym highlight-green">153 x 55cm</td>
+          <td class="col-gym highlight-green">152 x 55cm</td>
+        </tr>
+        <tr>
+          <td>Zwift / Kinomap compatible</td>
+          <td class="col-sprint"><span class="check-yes">✓</span></td>
+          <td class="col-gym"><span class="check-yes">✓</span></td>
+          <td class="col-gym"><span class="check-yes">✓</span></td>
+        </tr>
+        <tr>
+          <td>Foldable</td>
+          <td class="col-sprint"><span class="check-yes">✓</span></td>
+          <td class="col-gym"><span class="check-yes">✓</span></td>
+          <td class="col-gym"><span class="check-no">✗ (fixed frame)</span></td>
+        </tr>
+        <tr>
+          <td>Console</td>
+          <td class="col-sprint">13"</td>
+          <td class="col-gym highlight-green">22.5"</td>
+          <td class="col-gym highlight-green">22.5"</td>
+        </tr>
+        <tr>
+          <td>Max user weight</td>
+          <td class="col-sprint">130kg</td>
+          <td class="col-gym">130kg</td>
+          <td class="col-gym highlight-green">150kg</td>
+        </tr>
+        <tr>
+          <td>Best suited for</td>
+          <td class="col-sprint highlight-green">Regular runners training for 5K-10K, first serious home treadmill</td>
+          <td class="col-gym">Runners wanting a bigger deck and console, still foldable</td>
+          <td class="col-gym">Advanced runners wanting a fixed, near-commercial feel</td>
+        </tr>
+        <tr>
+          <td>Warranty</td>
+          <td class="col-sprint">3 years</td>
+          <td class="col-gym">3 years</td>
+          <td class="col-gym">3 years</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="reveal" style="max-width:820px;margin:32px auto 0;color:rgba(245,230,211,.7);line-height:1.82;">
+    <p>The Sprint-8 Pro and Sprint-9 Pro sit above the Sprint 7 for runners who want more: a larger 153cm deck and bigger 22.5" console on the Sprint-8 Pro, or the fixed, near-commercial frame and 22km/h top speed of the Sprint-9 Pro. Both cost several hundred pounds more and, in the Sprint-9 Pro's case, trade away the folding frame entirely.</p>
+    <p style="margin-top:14px;">The Sprint 7 is JTX's entry point into the Sprint range: the same 20km/h top speed and 12% incline as the Sprint-8 Pro, full Zwift and Kinomap compatibility, a proper folding steel frame, and the same 3-year in-home warranty as the models above it, at a noticeably lower price. For most home runners training for 5K-10K, it covers everything that matters without paying for a bigger console or a fixed frame you may not need.</p>
+  </div>
+</section>
+
+
 <section class="tel-video-section">
   <div class="tel-video-header reveal">
     <div class="section-label" style="justify-content:center;">Train. Explore. Live.</div>
@@ -3324,21 +3436,79 @@ document.addEventListener('click', function(e) {
 
 </section>
 
+<section class="legal-section" id="site-info">
+  <div class="legal-header">
+    <div class="section-label" style="justify-content:center;">Transparency</div>
+    <h2>Legal, Privacy &amp; Contact</h2>
+    <p>Everything you need to know about who runs this site, how we handle your data, and how to reach us.</p>
+  </div>
+  <div class="legal-grid">
+
+    <div class="legal-block" id="legal">
+      <h3>Legal Notice</h3>
+      <div class="modal-content">
+        <p><strong>Website:</strong> RunSmarter, an independent fitness review site. Not affiliated with or officially connected to JTX Fitness Ltd.</p>
+        <h4>Affiliate Disclosure</h4>
+        <p>This site participates in affiliate programmes. Some links are affiliate links. We may earn a small commission if you purchase through them, at no additional cost to you. This does not influence our editorial opinions.</p>
+        <h4>Content Accuracy</h4>
+        <p>We make every effort to ensure product specifications, pricing and availability are accurate at publication. Prices may change, so always verify on the retailer's official website before purchasing.</p>
+      </div>
+    </div>
+
+    <div class="legal-block" id="privacy">
+      <h3>Privacy Policy</h3>
+      <div class="modal-content">
+        <p><strong>Last updated:</strong> May 2026</p>
+        <h4>Data We Collect</h4>
+        <p>No account or personal information is required to browse this site. We do not collect, store, or sell personal data from visitors. If you contact us by email, your address and message are used solely to respond to your enquiry.</p>
+        <h4>Affiliate Links</h4>
+        <p>When you click an affiliate link and make a purchase, the retailer may set tracking cookies. This is governed by their own privacy policy. We receive a commission but no personal data about you.</p>
+        <h4>Analytics</h4>
+        <p>We may use anonymised analytics tools to understand how visitors use this site. IP addresses are anonymised before processing.</p>
+        <h4>Your Rights (UK GDPR)</h4>
+        <p>You have the right to access, correct or request deletion of any personal data we hold. See the Contact block below to reach us.</p>
+      </div>
+    </div>
+
+    <div class="legal-block" id="cookies">
+      <h3>Cookie Policy</h3>
+      <div class="modal-content">
+        <p><strong>Last updated:</strong> May 2026</p>
+        <h4>Cookies We Use</h4>
+        <div class="cookie-table"><div class="cookie-row header"><div>Type</div><div>Purpose</div><div>Duration</div></div><div class="cookie-row"><div><strong>Essential</strong></div><div>Required for the site to function correctly</div><div>Session</div></div><div class="cookie-row"><div><strong>Analytics</strong></div><div>Anonymous visitor statistics via Google Analytics</div><div>Up to 2 years</div></div><div class="cookie-row"><div><strong>Affiliate</strong></div><div>Tracks referrals to JTX Fitness via the Awin network</div><div>30 days</div></div></div>
+        <h4>Managing Cookies</h4>
+        <p>You can control cookies through your browser settings. For more information visit <a href="https://www.allaboutcookies.org" target="_blank" rel="noopener">allaboutcookies.org</a>.</p>
+      </div>
+    </div>
+
+    <div class="legal-block" id="contact-us">
+      <h3>Contact Us</h3>
+      <div class="modal-content">
+        <p>Have a question, a correction to suggest or a partnership enquiry? We are happy to hear from you.</p>
+        <div class="contact-block"><div class="contact-icon">✉</div><div><div class="contact-label">Email</div><a href="mailto:Runsmarterjtx@outlook.com" class="contact-email">Runsmarterjtx@outlook.com</a></div></div>
+        <div class="contact-note"><p>We aim to reply within 48 hours. For product support or warranty queries please contact JTX Fitness directly via their official website.</p></div>
+        <div class="contact-topics"><div class="contact-topic">📝 Editorial corrections</div><div class="contact-topic">🤝 Partnership enquiries</div><div class="contact-topic">❓ General questions</div><div class="contact-topic">🔒 Privacy &amp; data requests</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <footer id="contact">
   <div class="footer-top">
-    <p class="footer-copy">RunSmarter is an independent fitness review site based in the UK. We feature affiliate links for JTX Fitness, Expedia, Fat Burn Active and WeightWorld. We may earn a commission at no extra cost to you. © 2026 RunSmarter. All rights reserved.</p>
+    <p class="footer-copy">© 2026 RunSmarter. All rights reserved.</p>
   </div>
   <nav class="footer-links">
-    <button class="footer-link" onclick="openModal('modal-legal')">Legal Notice</button>
-    <button class="footer-link" onclick="openModal('modal-privacy')">Privacy Policy</button>
-    <button class="footer-link" onclick="openModal('modal-cookies')">Cookies</button>
-    <button class="footer-link" onclick="openModal('modal-contact')">Contact</button>
+    <a class="footer-link" href="#legal">Legal Notice</a>
+    <a class="footer-link" href="#privacy">Privacy Policy</a>
+    <a class="footer-link" href="#cookies">Cookies</a>
+    <a class="footer-link" href="#contact-us">Contact</a>
   </nav>
 </footer>
 
 <div id="cookie-banner">
   <div class="cookie-inner">
-    <div class="cookie-text"><strong>We use cookies</strong> to improve your experience and analyse traffic. No personal data is sold or shared with third parties. <button class="cookie-more" onclick="openModal('modal-cookies')">Learn more</button></div>
+    <div class="cookie-text"><strong>We use cookies</strong> to improve your experience and analyse traffic. No personal data is sold or shared with third parties. <a class="cookie-more" href="#cookies">Learn more</a></div>
     <div class="cookie-actions">
       <button class="cookie-decline" onclick="closeCookie()">Decline</button>
       <button class="cookie-accept" onclick="closeCookie()">Accept All</button>
@@ -3346,13 +3516,6 @@ document.addEventListener('click', function(e) {
   </div>
 </div>
 
-<div id="modal-legal" class="modal-overlay" onclick="closeModal(this)"><div class="modal-box" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeModal(document.getElementById('modal-legal'))">✕</button><h3>Legal Notice</h3><div class="modal-content"><p><strong>Website:</strong> RunSmarter. independent fitness review site.</p><p><strong>Status:</strong> RunSmarter is not affiliated with or officially connected to JTX Fitness Ltd.</p><h4>Affiliate Disclosure</h4><p>This site participates in affiliate programmes. Some links are affiliate links. We may earn a small commission if you purchase through them, at no additional cost to you. This does not influence our editorial opinions.</p><h4>Content Accuracy</h4><p>We make every effort to ensure product specifications, pricing and availability are accurate at publication. Prices may change, so always verify on the retailer's official website before purchasing.</p><h4>Contact</h4><p><a href="mailto:Runsmarterjtx@outlook.com">Runsmarterjtx@outlook.com</a></p></div></div></div>
-
-<div id="modal-privacy" class="modal-overlay" onclick="closeModal(this)"><div class="modal-box" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeModal(document.getElementById('modal-privacy'))">✕</button><h3>Privacy Policy</h3><div class="modal-content"><p><strong>Last updated:</strong> May 2026</p><h4>Who We Are</h4><p>RunSmarter is an independent fitness review site. We do not collect, store, or sell personal data from visitors.</p><h4>Data We Collect</h4><p>No account or personal information is required to browse this site. If you contact us by email, your address and message are used solely to respond to your enquiry and are never shared with third parties.</p><h4>Affiliate Links</h4><p>When you click an affiliate link and make a purchase, the retailer may set tracking cookies. This is governed by their own privacy policy. We receive a commission but no personal data about you.</p><h4>Analytics</h4><p>We may use anonymised analytics tools to understand how visitors use this site. No personally identifiable information is collected and IP addresses are anonymised before processing.</p><h4>Your Rights (UK GDPR)</h4><p>You have the right to access, correct or request deletion of any personal data we hold. Contact us at <a href="mailto:Runsmarterjtx@outlook.com">Runsmarterjtx@outlook.com</a>.</p></div></div></div>
-
-<div id="modal-cookies" class="modal-overlay" onclick="closeModal(this)"><div class="modal-box" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeModal(document.getElementById('modal-cookies'))">✕</button><h3>Cookie Policy</h3><div class="modal-content"><p><strong>Last updated:</strong> May 2026</p><h4>What Are Cookies?</h4><p>Cookies are small text files placed on your device by websites you visit. They help sites function correctly and provide information to site owners.</p><h4>Cookies We Use</h4><div class="cookie-table"><div class="cookie-row header"><div>Type</div><div>Purpose</div><div>Duration</div></div><div class="cookie-row"><div><strong>Essential</strong></div><div>Required for the site to function correctly</div><div>Session</div></div><div class="cookie-row"><div><strong>Analytics</strong></div><div>Anonymous visitor statistics via Google Analytics</div><div>Up to 2 years</div></div><div class="cookie-row"><div><strong>Affiliate</strong></div><div>Tracks referrals to JTX Fitness via the Awin network</div><div>30 days</div></div></div><h4>Managing Cookies</h4><p>You can control cookies through your browser settings. For more information visit <a href="https://www.allaboutcookies.org" target="_blank" rel="noopener">allaboutcookies.org</a>.</p><h4>Contact</h4><p><a href="mailto:Runsmarterjtx@outlook.com">Runsmarterjtx@outlook.com</a></p></div></div></div>
-
-<div id="modal-contact" class="modal-overlay" onclick="closeModal(this)"><div class="modal-box" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeModal(document.getElementById('modal-contact'))">✕</button><h3>Contact Us</h3><div class="modal-content"><p>Have a question, a correction to suggest or a partnership enquiry? We are happy to hear from you.</p><div class="contact-block"><div class="contact-icon">✉</div><div><div class="contact-label">Email</div><a href="mailto:Runsmarterjtx@outlook.com" class="contact-email">Runsmarterjtx@outlook.com</a></div></div><div class="contact-note"><p>We aim to reply within 48 hours. For product support or warranty queries please contact JTX Fitness directly via their official website.</p></div><div class="contact-topics"><div class="contact-topic">📝 Editorial corrections</div><div class="contact-topic">🤝 Partnership enquiries</div><div class="contact-topic">❓ General questions</div><div class="contact-topic">🔒 Privacy &amp; data requests</div></div></div></div></div>
 
 <script>
 // ── SCROLL REVEAL ──
