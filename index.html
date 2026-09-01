@@ -1076,8 +1076,9 @@ img { -webkit-user-drag: none; user-drag: none; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
-  .hero { grid-template-columns: 1fr; padding: 20px 6vw 60px; min-height: auto; }
+  .hero { grid-template-columns: 1fr; padding: 20px 6vw 60px; min-height: auto; gap: 32px; }
   .hero-img-wrap { display: none; }
+  .hero-stadium-img { margin-top: 28px; margin-bottom: 16px; }
   .split-grid { grid-template-columns: 1fr; }
   .split-grid .split-img { min-height: 260px; }
   .console-section { grid-template-columns: 1fr; }
@@ -1446,6 +1447,18 @@ img { -webkit-user-drag: none; user-drag: none; }
   .navbar-cta { font-size: .78rem; padding: 9px 14px; }
   .navbar-logo-img { height: 36px; }
   .navbar-brand-text { font-size: 1.1rem; }
+}
+
+/* ── LANDSCAPE-ONLY OVERRIDES (phone landscape, tablet, desktop) ── */
+/* Moves the hamburger menu button to sit right next to the "SEE ON JTX" button */
+@media (max-width: 900px) and (orientation: landscape) {
+  .nav-hamburger { margin-left: auto; margin-right: 12px; }
+  .navbar-cta { margin-left: 0; }
+}
+
+/* Keeps the sticky bar's text on the left, but shifts Buy Now + close button toward the right */
+@media (orientation: landscape) {
+  .sticky-bottom-bar .btn-cta.sticky-cta { margin-left: auto; }
 }
 
 
